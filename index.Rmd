@@ -1,0 +1,34 @@
+---
+title             : "Travel Log"
+author            : "Joseph V. Casillas"
+date              : 'Updated: `r Sys.time()`'
+---
+
+These are most of the places I have been. 
+
+```{r echo=FALSE}
+library(knitr)
+read_chunk('travelLog.R')
+```
+
+</br>
+
+```{r, 'libraries', echo=TRUE, message=FALSE}
+```
+
+</br>
+
+```{r, 'getData', echo=TRUE}
+```
+
+</br>
+
+```{r, 'desc', echo=TRUE}
+```
+
+</br>
+
+```{r, 'plot', echo=TRUE}
+```
+
+This map was created using the [leaflet](http://rstudio.github.io/leaflet/) package. 

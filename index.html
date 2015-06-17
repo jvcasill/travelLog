@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Joseph V. Casillas" />
+
+
+<title>Travel Log</title>
+
+<script src="libs/jquery-1.11.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/spacelab.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<script src="libs/htmlwidgets-0.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-0.7.3/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-0.7.3/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-0.0.10/leaflet.js"></script>
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Travel Log</a></li>
+        <li><a href="/mobile.html">Mobile</a></li>
+        <!-- <li class="dropdown"> -->
+          <!-- <a href="developer" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Verbs<span class="caret"></span></a> -->
+          <!-- <ul class="dropdown-menu" role="menu"> -->
+             <!-- <li class="dropdown-header">Test</li> -->
+             <!-- <li><a href="verbs.html">Class 1</a></li> -->
+          <!-- </ul> -->
+        <!-- </li> -->
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+<h1 class="title">Travel Log</h1>
+<h4 class="author"><em>Joseph V. Casillas</em></h4>
+<h4 class="date"><em>Updated: 2015-06-17 14:57:37</em></h4>
+</div>
+
+
+<p>These are most of the places I have been.</p>
+<p></br></p>
+<pre class="r"><code>library(dplyr); library(leaflet); library(RCurl)</code></pre>
+<p></br></p>
+<pre class="r"><code># scrape travel log data
+# URL https://docs.google.com/spreadsheets/d/1Bvxokjblb0Jv1dSphDpBdLPgdsndckdbHdRorkyD4vk/pubhtml
+
+f = getForm(&quot;https://spreadsheets.google.com/spreadsheet/pub&quot;, 
+              hl =&quot;en_US&quot;, key = &quot;1Bvxokjblb0Jv1dSphDpBdLPgdsndckdbHdRorkyD4vk&quot;, 
+              output = &quot;csv&quot;, 
+              .opts = list(followlocation = TRUE, verbose = TRUE, ssl.verifypeer = FALSE)) 
+
+tLog &lt;- read.csv(textConnection(f))</code></pre>
+<p></br></p>
+<pre class="r"><code># check data frame
+glimpse(tLog)</code></pre>
+<pre><code>## Observations: 1
+## Variables:
+## $ Timestamp (fctr) 6/17/2015 14:16:34
+## $ Location  (fctr) Madrid, Spain
+## $ Lat       (dbl) 40.41678
+## $ Lon       (dbl) -3.70379</code></pre>
+<pre class="r"><code>head(tLog)</code></pre>
+<pre><code>##            Timestamp      Location      Lat      Lon
+## 1 6/17/2015 14:16:34 Madrid, Spain 40.41678 -3.70379</code></pre>
+<p></br></p>
+<pre class="r"><code># plot it
+leaflet(data = tLog, width = 910, height = 500) %&gt;% 
+  setView(lat = 25, lng = -38, zoom = 2) %&gt;%
+  addTiles() %&gt;%
+  addMarkers(~Lon, ~Lat, popup = ~as.character(Location))</code></pre>
+<p><div id="htmlwidget-2577" style="width:910px;height:500px;" class="leaflet"></div>
+<script type="application/json" data-for="htmlwidget-2577">{"x":{"setView":[[25,-38],2,[]],"calls":[{"method":"tileLayer","args":["http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>"}]},{"method":"marker","args":[40.4167754,-3.7037902,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Madrid, Spain"]}],"limits":{"lat":[40.4167754,40.4167754],"lng":[-3.7037902,-3.7037902]}},"evals":[]}</script></p>
+<p>This map was created using the <a href="http://rstudio.github.io/leaflet/">leaflet</a> package.</p>
+
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+<script>
+
+
+
+</script>
+
+<!-- disqus -->
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jvcasillas'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

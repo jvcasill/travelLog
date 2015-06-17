@@ -1,0 +1,7 @@
+---
+title             : "Travel Log"
+author            : "Joseph V. Casillas"
+date              : 'Updated: `r Sys.time()`'
+---
+
+<iframe src="https://docs.google.com/forms/d/1sX9F0pJAdwqMT5BhuEcaHAcd3mtErHHfcNApyw81BwA/viewform?embedded=true" width="760" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>

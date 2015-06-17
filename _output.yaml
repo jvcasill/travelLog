@@ -1,0 +1,12 @@
+html_document:
+  self_contained: false
+  theme: spacelab
+  highlight: textmate
+  mathjax: null
+  toc_depth: 2
+  lib_dir: libs
+  includes:
+    in_header: libs/includes/in_header.html
+    before_body: libs/includes/before_body.html
+    after_body: libs/includes/after_body.html
+
