@@ -30,7 +30,7 @@ leaflet(data = tLog, width = 910, height = 500) %>%
 
 ## @knitr plotMobile
 # plot it
-leaflet(data = tLog, width = 380, height = 480) %>% 
+leaflet(data = tLog, width = 350, height = 450) %>% 
   setView(lat = 25, lng = -38, zoom = 2) %>%
   addTiles() %>%
   addMarkers(~Lon, ~Lat, popup = ~as.character(Location))

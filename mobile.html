@@ -131,7 +131,7 @@ img {
 <div id="header">
 <h1 class="title">Travel Log</h1>
 <h4 class="author"><em>Joseph V. Casillas</em></h4>
-<h4 class="date"><em>Updated: 2015-06-17 15:15:06</em></h4>
+<h4 class="date"><em>Updated: 2015-06-17 15:16:27</em></h4>
 </div>
 
 
@@ -162,11 +162,11 @@ glimpse(tLog)</code></pre>
 ## 1 6/17/2015 14:16:34 Madrid, Spain 40.41678 -3.70379</code></pre>
 <p></br></p>
 <pre class="r"><code># plot it
-leaflet(data = tLog, width = 380, height = 480) %&gt;% 
+leaflet(data = tLog, width = 350, height = 450) %&gt;% 
   setView(lat = 25, lng = -38, zoom = 2) %&gt;%
   addTiles() %&gt;%
   addMarkers(~Lon, ~Lat, popup = ~as.character(Location))</code></pre>
-<p><div id="htmlwidget-2577" style="width:380px;height:480px;" class="leaflet"></div>
+<p><div id="htmlwidget-2577" style="width:350px;height:450px;" class="leaflet"></div>
 <script type="application/json" data-for="htmlwidget-2577">{"x":{"setView":[[25,-38],2,[]],"calls":[{"method":"tileLayer","args":["http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>"}]},{"method":"marker","args":[40.4167754,-3.7037902,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Madrid, Spain"]}],"limits":{"lat":[40.4167754,40.4167754],"lng":[-3.7037902,-3.7037902]}},"evals":[]}</script></p>
 <p>This map was created using the <a href="http://rstudio.github.io/leaflet/">leaflet</a> package.</p>
 
