@@ -34,3 +34,9 @@ leaflet(data = tLog, width = 350, height = 450) %>%
   setView(lat = 25, lng = -38, zoom = 2) %>%
   addTiles() %>%
   addMarkers(~Lon, ~Lat, popup = ~as.character(Location))
+
+## @knitr table
+library(DT)
+tLog %>% 
+	datatable(callback = JS("return table;"))
+

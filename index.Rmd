@@ -11,24 +11,30 @@ library(knitr)
 read_chunk('travelLog.R')
 ```
 
-</br>
 
-```{r, 'libraries', echo=TRUE, message=FALSE}
+
+```{r, 'libraries', echo=FALSE, message=FALSE}
+```
+
+
+```{r, 'getData', echo=FALSE}
+```
+
+
+
+```{r, 'desc', echo=FALSE, eval=FALSE}
+```
+
+
+
+```{r, 'plot', echo=FALSE}
 ```
 
 </br>
 
-```{r, 'getData', echo=TRUE}
+This map was created using the [leaflet](http://rstudio.github.io/leaflet/) package. Below is a searchable data frame of all the locations shown on the 
+map. 
+
+```{r, 'table', echo=FALSE}
 ```
 
-</br>
-
-```{r, 'desc', echo=TRUE}
-```
-
-</br>
-
-```{r, 'plot', echo=TRUE}
-```
-
-This map was created using the [leaflet](http://rstudio.github.io/leaflet/) package. 

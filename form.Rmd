@@ -4,4 +4,25 @@ author            : "Joseph V. Casillas"
 date              : 'Updated: `r Sys.time()`'
 ---
 
-<iframe src="https://docs.google.com/forms/d/1sX9F0pJAdwqMT5BhuEcaHAcd3mtErHHfcNApyw81BwA/viewform?embedded=true" width="760" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+<iframe src="https://docs.google.com/forms/d/1sX9F0pJAdwqMT5BhuEcaHAcd3mtErHHfcNApyw81BwA/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+
+
+Here is a list of the current data frame. Search it if you aren't sure if you 
+have already added a location. :)
+
+```{r echo=FALSE}
+library(knitr)
+read_chunk('travelLog.R')
+```
+
+
+
+```{r, 'libraries', echo=FALSE, message=FALSE}
+```
+
+
+```{r, 'getData', echo=FALSE}
+```
+
+```{r, 'table', echo=TRUE}
+```

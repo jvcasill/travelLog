@@ -31,4 +31,12 @@ read_chunk('travelLog.R')
 ```{r, 'plotMobile', echo=TRUE}
 ```
 
+</br>
+
 This map was created using the [leaflet](http://rstudio.github.io/leaflet/) package. 
+
+
+```{r, 'table', echo=TRUE}
+```
+
+
